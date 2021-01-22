@@ -35,8 +35,13 @@ class App extends React.Component {
       })
   }
 
-  handleAdopt = () => {
-    console.log('hey boss');
+  handleAdopt = (event) => {
+    const type = event.target.id;
+    console.log(type);
+    helper.petIsAdopted(type)
+      .then((resJson) => {
+        console.log(resJson);
+      })
   }
 
   handleAddRealPerson = (event, name) => {
@@ -66,6 +71,7 @@ class App extends React.Component {
       thankYou: this.state.thankYouMeme,
       realPerson: this.state.realPerson,
       error: this.state.error,
+      handleAdopt: this.handleAdopt,
     }
     const { people } = this.state;
 

@@ -5,6 +5,8 @@ const PetContext = React.createContext({
   person: '',
   thankYouMeme: '',
   realPerson: '',
+  handleAdopt: () => {},
+  error: null,
 })
 
 export default PetContext;

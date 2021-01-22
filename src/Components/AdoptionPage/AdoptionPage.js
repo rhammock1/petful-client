@@ -45,9 +45,11 @@ class AdoptionPage extends React.Component {
       thankYou,
       realPerson,
       error,
+      handleAdopt,
     } = this.context;
     const { handleAddRealPerson, people } = this.props;
     const { name } = this.state;
+    let type = '';
 
     return (
       <div className='page-container'>
@@ -58,7 +60,15 @@ class AdoptionPage extends React.Component {
         <div className='adoption-container'>
           {/* Add context then make another container for each animal.  */}
           {Object.entries(topPets).map((pet, i) => {
+            
+            if (topPets.cat === pet[1]) {
+              type = 'cats';
+            } else {
+              type = 'dogs'
+            }
+
             pet = pet[1];
+            
             return (
               <div key={i} className='pet-container'>
                 <img src={pet.imageURL} alt={pet.imageDescription} />
@@ -73,8 +83,7 @@ class AdoptionPage extends React.Component {
                 {(person === realPerson)
                   ? (
                   <>
-                    <button type='button'>Adopt Me</button>
-                    <button type='button'>Or, Adopt us both</button>
+                    <button id={type} onClick={(event) => handleAdopt(event)} type='button'>Adopt Me</button>
                   </>
                   )
                   : null
@@ -82,7 +91,7 @@ class AdoptionPage extends React.Component {
               </div>
             )
           })}
-          
+          <button id='both' onClick={(event) => handleAdopt(event)} type='button'>Or, Adopt us both</button>
         </div>
       </div>
       )

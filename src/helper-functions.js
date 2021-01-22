@@ -20,7 +20,7 @@ const fetchBoth = function() {
 }
 
 const addPerson = function(name) {
-  name = { name: name };
+  name = { name };
   return fetch(`${endpoint}/people`, {
     method: 'POST',
     headers: {
@@ -35,8 +35,26 @@ const addPerson = function(name) {
       return res.json();
     })
 }
+
+const petIsAdopted = (type) => {
+  type = { type };
+  return fetch(`${endpoint}/pets`, {
+    method: 'DELETE',
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(type)
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return res.json().then((e)=> Promise.reject(e));
+      }
+      return res.json();
+    })
+}
 const helper = {
   fetchBoth,
-  addPerson
+  addPerson,
+  petIsAdopted,
 }
 export default helper;
