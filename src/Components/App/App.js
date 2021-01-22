@@ -13,7 +13,9 @@ class App extends React.Component {
   state = {
     error: null,
     topPets: {},
+    realPerson: '',
     person: '',
+    people: [],
     thankYouMeme: 'https://i.redd.it/ne17uc446c051.jpg',
   }
 
@@ -38,7 +40,8 @@ class App extends React.Component {
       .then(([pets, people]) => {
         this.setState({
           topPets: pets.topPets,
-          person: people
+          person: people.person,
+          people: people.people,
         })
       })
       .catch((error) => {
@@ -50,12 +53,20 @@ class App extends React.Component {
     console.log('hey boss');
   }
 
+  handleAddRealPerson = (event, name) => {
+    event.preventDefault();
+    this.setState({ realPerson: name });
+  }
+
   render() {
     const value = {
       topPets: this.state.topPets,
       person: this.state.person,
-      thankYou: this.state.thankYouMeme
+      thankYou: this.state.thankYouMeme,
+      realPerson: this.state.realPerson,
     }
+    const { people } = this.state;
+
     return (
       <>
         <header>
@@ -65,7 +76,7 @@ class App extends React.Component {
           <PetContext.Provider value={value}>
             <Switch>
               <Route exact path='/' component={LandingPage} />
-              <Route path='/adopt' component={AdoptionPage} />
+              <Route path='/adopt' render={(props) => (<AdoptionPage {...props} handleAddRealPerson={this.handleAddRealPerson} people={people} />)} />
             </Switch>
           </PetContext.Provider>
           
