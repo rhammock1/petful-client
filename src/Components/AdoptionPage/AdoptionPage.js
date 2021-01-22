@@ -41,7 +41,7 @@ class AdoptionPage extends React.Component {
   render() {
     const {
       topPets,
-      Person,
+      person,
       thankYou,
       realPerson,
     } = this.context;
@@ -69,11 +69,19 @@ class AdoptionPage extends React.Component {
                     <li>{pet.story}</li>
                   </ul>
                 </div>
-                <button type='button'>Adopt Me</button>
+                {(person === realPerson)
+                  ? (
+                  <>
+                    <button type='button'>Adopt Me</button>
+                    <button type='button'>Or, Adopt us both</button>
+                  </>
+                  )
+                  : null
+                }
               </div>
             )
           })}
-          <button type='button'>Or, Adopt us both</button>
+          
         </div>
       </div>
       )
