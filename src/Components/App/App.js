@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import PetContext from '../../PetContext';
 import AdoptionPage from '../AdoptionPage/AdoptionPage';
 import LandingPage from '../LandingPage/LandingPage';
+import helper from '../../helper-functions';
 import './App.css';
 
 class App extends React.Component {
@@ -20,23 +21,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const endpoint = 'https://mysterious-lowlands-03819.herokuapp.com/api';
-    Promise.all([
-      fetch(`${endpoint}/pets`),
-      fetch(`${endpoint}/people`),
-    ])
-      .then(([petsRes, peopleRes]) => {
-        if (!petsRes.ok) {
-          return petsRes.json().then(e => Promise.reject(e))
-        }
-        if (!peopleRes.ok) {
-          return peopleRes.json().then(e => Promise.reject(e))
-        }
-        return Promise.all([
-          petsRes.json(),
-          peopleRes.json(),
-        ])
-      })
+    
+    helper.fetchBoth()
       .then(([pets, people]) => {
         this.setState({
           topPets: pets.topPets,
@@ -55,7 +41,17 @@ class App extends React.Component {
 
   handleAddRealPerson = (event, name) => {
     event.preventDefault();
-    this.setState({ realPerson: name });
+    helper.addPerson(name)
+      .then((personJson) => {
+        const { people } = this.state;
+        const newPeople = [...people];
+        const person = personJson.person;
+        newPeople.push(person); 
+        this.setState({ realPerson: name, people: newPeople })
+      })
+      .catch((error) => {
+        this.setState({ error })
+      })
   }
 
   render() {

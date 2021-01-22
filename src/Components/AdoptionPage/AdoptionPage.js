@@ -3,6 +3,7 @@ import PetContext from '../../PetContext';
 
 // Form for user to add their name to the adoption list
 function SignUp(props) {
+  const { people } = props || [];
   return (
     <div className='signup'>
       <form onSubmit={(event) => props.handleAddRealPerson(event, props.name)} >
@@ -10,7 +11,7 @@ function SignUp(props) {
         <div className='form-group'>
           <p>These people are already ahead of you: </p>
           <ul>
-            {props.people.map((person, i) => <li key={i}>{person}</li>)}
+            {people.map((person, i) => <li key={i}>{(person === props.realPerson) ? `${person} <- You` : `${person}`}</li>)}
           </ul>
         </div>
         <div className='form-group'>
@@ -41,7 +42,8 @@ class AdoptionPage extends React.Component {
     const {
       topPets,
       Person,
-      thankYou
+      thankYou,
+      realPerson,
     } = this.context;
     const { handleAddRealPerson, people } = this.props;
     const { name } = this.state;
@@ -51,7 +53,7 @@ class AdoptionPage extends React.Component {
         <div className='page-heading'>
           <h2>Here are the pets available for adoption</h2>
         </div>
-        <SignUp name={name} handleChange={this.handleChange} handleAddRealPerson={handleAddRealPerson} people={people} />
+        <SignUp realPerson={realPerson} name={name} handleChange={this.handleChange} handleAddRealPerson={handleAddRealPerson} people={people} />
         <div className='adoption-container'>
           {/* Add context then make another container for each animal.  */}
           {Object.entries(topPets).map((pet, i) => {
