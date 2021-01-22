@@ -44,11 +44,10 @@ class App extends React.Component {
       })
   }
 
-  renderLandingPage = () => {
-    return (
-      <LandingPage />
-    )
+  handleAdopt = () => {
+    console.log('hey boss');
   }
+
   render() {
     
     return (
@@ -58,7 +57,7 @@ class App extends React.Component {
         </header>
         <main>
           <Switch>
-            <Route exact path='/' component={this.renderLandingPage} />
+            <Route exact path='/' component={LandingPage} />
             <Route path='/adopt' component='' />
           </Switch>
         </main>
