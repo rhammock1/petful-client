@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import PetContext from '../../PetContext';
 import AdoptionPage from '../AdoptionPage/AdoptionPage';
 import LandingPage from '../LandingPage/LandingPage';
 import './App.css';
@@ -36,7 +37,7 @@ class App extends React.Component {
       })
       .then(([pets, people]) => {
         this.setState({
-          topPets: pets,
+          topPets: pets.topPets,
           person: people
         })
       })
@@ -50,17 +51,24 @@ class App extends React.Component {
   }
 
   render() {
-    
+    const value = {
+      topPets: this.state.topPets,
+      person: this.state.person,
+      thankYou: this.state.thankYouMeme
+    }
     return (
       <>
         <header>
           <h1>Welcome to Petful</h1>
         </header>
         <main>
-          <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route path='/adopt' component={AdoptionPage} />
-          </Switch>
+          <PetContext.Provider value={value}>
+            <Switch>
+              <Route exact path='/' component={LandingPage} />
+              <Route path='/adopt' component={AdoptionPage} />
+            </Switch>
+          </PetContext.Provider>
+          
         </main>
       </>
     )
