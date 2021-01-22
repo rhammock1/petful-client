@@ -20,7 +20,7 @@ function SignUp(props) {
         </div>
         <button type='submit'>Submit</button>
       </form>
-
+      { (props.error) ? <p className='error'>{props.error}</p> : null }
     </div>
   )
 }
@@ -44,6 +44,7 @@ class AdoptionPage extends React.Component {
       person,
       thankYou,
       realPerson,
+      error,
     } = this.context;
     const { handleAddRealPerson, people } = this.props;
     const { name } = this.state;
@@ -53,7 +54,7 @@ class AdoptionPage extends React.Component {
         <div className='page-heading'>
           <h2>Here are the pets available for adoption</h2>
         </div>
-        <SignUp realPerson={realPerson} name={name} handleChange={this.handleChange} handleAddRealPerson={handleAddRealPerson} people={people} />
+        <SignUp error={error} realPerson={realPerson} name={name} handleChange={this.handleChange} handleAddRealPerson={handleAddRealPerson} people={people} />
         <div className='adoption-container'>
           {/* Add context then make another container for each animal.  */}
           {Object.entries(topPets).map((pet, i) => {

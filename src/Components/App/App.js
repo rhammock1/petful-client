@@ -41,6 +41,11 @@ class App extends React.Component {
 
   handleAddRealPerson = (event, name) => {
     event.preventDefault();
+    const { people } = this.state;
+    if (people.includes(name)) {
+      document.getElementById('name').value = '';
+      return this.setState({ error: 'Name must be unique'});
+    }
     helper.addPerson(name)
       .then((personJson) => {
         const { people } = this.state;
@@ -60,6 +65,7 @@ class App extends React.Component {
       person: this.state.person,
       thankYou: this.state.thankYouMeme,
       realPerson: this.state.realPerson,
+      error: this.state.error,
     }
     const { people } = this.state;
 
