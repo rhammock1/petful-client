@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import AdoptionPage from '../AdoptionPage/AdoptionPage';
 import LandingPage from '../LandingPage/LandingPage';
 import './App.css';
 
@@ -58,7 +59,7 @@ class App extends React.Component {
         <main>
           <Switch>
             <Route exact path='/' component={LandingPage} />
-            <Route path='/adopt' component='' />
+            <Route path='/adopt' component={AdoptionPage} />
           </Switch>
         </main>
       </>

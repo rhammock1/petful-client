@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AdoptDesc from '../AdoptDesc/AdoptDesc';
+import AdoptDesc from '../ProcessDescription/ProcessDescription';
 
 const LandingPage = function() {
   return (
     // Landing Page --- theres gonna be an image and some description about what the adpoption
     // process is and someone gets signed up.
-    <div className='landing-container'>
-      <div className='landing-heading'>
+    <div className='page-container'>
+      <div className='page-heading'>
         <h2>Our Adoption Process</h2>
       </div>
       <div className='landing-description'>
