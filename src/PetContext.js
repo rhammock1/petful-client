@@ -8,6 +8,7 @@ const PetContext = React.createContext({
   handleAdopt: () => {},
   error: null,
   message: '',
+  canAdopt: false,
 })
 
 export default PetContext;

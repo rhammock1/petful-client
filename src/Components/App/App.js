@@ -19,6 +19,7 @@ class App extends React.Component {
     people: [],
     message: '',
     adopted: false,
+    canAdopt: false,
   }
 
   componentDidMount() {
@@ -36,26 +37,34 @@ class App extends React.Component {
       })
   }
 
-  handleAdopt = async (event) => {
+  handleAdopt = (event) => {
     const type = event.target.id;
-    const { people, person, realPerson } = this.state;
-    if (people.length < 1) {
+    if (!type) {
       return;
     }
+
+    const { person, realPerson } = this.state;
+
     if (person === realPerson) {
       this.setState({ adopted: true });
     } else {
       this.setState({ adopted: false });
     }
-    people.shift();
-    const newPerson = [...people].shift();
-    await helper.petIsAdopted(type)
+    helper.petIsAdopted(type)
       .then((resJson) => {
+        const [removed, ...people] = this.state.people;
+        const canAdopt = people[0] === realPerson;
+
+        const message = canAdopt
+          ? "It's your turn to adopt!"
+          : resJson.message
+
         this.setState({
           topPets: resJson.topPets,
-          message: resJson.message,
+          message: message,
           people: people,
-          person: newPerson || '',
+          person: people[0] || '',
+          canAdopt,
         })
       })
       .catch((error) => {
@@ -71,15 +80,7 @@ class App extends React.Component {
         id: type,
       },
     };
-    const { person, realPerson } = this.state;
 
-    const stop = setInterval(() => {
-      if (person === realPerson) {
-        console.log('Hey boss');
-        clearInterval(timer);
-        clearInterval(stop);
-      }
-    })
     const names = [
       'Jerry Terry',
       'Merry Werry',
@@ -108,7 +109,14 @@ class App extends React.Component {
           this.setState({ error });
         })
     }, 5000)
-    
+    const { canAdopt } = this.state;
+    const stop = setInterval(() => {
+      if (canAdopt) {
+        console.log('Hey boss');
+        clearInterval(timer);
+        clearInterval(stop);
+      }
+    })
   }
 
   handleAddRealPerson = (event, name) => {
@@ -145,6 +153,7 @@ class App extends React.Component {
       error: this.state.error,
       handleAdopt: this.handleAdopt,
       message: this.state.message,
+      canAdopt: this.state.canAdopt,
     }
     const { people } = this.state;
 

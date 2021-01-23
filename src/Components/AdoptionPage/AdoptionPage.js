@@ -47,6 +47,7 @@ class AdoptionPage extends React.Component {
       realPerson,
       error,
       handleAdopt,
+      canAdopt,
     } = this.context;
     const { handleAddRealPerson, people } = this.props;
     const { name } = this.state;
@@ -58,7 +59,7 @@ class AdoptionPage extends React.Component {
           <h2>Here are the pets available for adoption</h2>
         </div>
         
-          {(message) 
+          {(message && !canAdopt) 
             ? <div className='thank-you'>
                 <p>{message}</p>
               </div>
@@ -71,6 +72,12 @@ class AdoptionPage extends React.Component {
               </div>
             : null
           }
+        {(message && canAdopt) 
+          ? <div className='thank-you canAdopt'>
+              <h3>{message}</h3>
+            </div>
+          : null
+        }
         <div className='adoption-container'>
           {Object.entries(topPets).map((pet, i) => {
             
