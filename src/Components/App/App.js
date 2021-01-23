@@ -17,6 +17,7 @@ class App extends React.Component {
     realPerson: '',
     person: '',
     people: [],
+    message: '',
     thankYouMeme: 'https://i.redd.it/ne17uc446c051.jpg',
   }
 
@@ -37,18 +38,43 @@ class App extends React.Component {
 
   handleAdopt = (event) => {
     const type = event.target.id;
-    console.log(type);
+    const { people } = this.state;
+    people.shift();
+    console.log(people);
     helper.petIsAdopted(type)
       .then((resJson) => {
-        console.log(resJson);
+        this.setState({
+          topPets: resJson.topPets,
+          message: resJson.message,
+          realPerson: '',
+          people: people,
+        })
+
       })
+      .catch((error) => {
+        this.setState({ error });
+      })
+  }
+
+  handleAutoAdopt = () => {
+    const { person, realPerson } = this.state;
+    const types = ['dogs', 'cats', 'both'];
+    const type = types[Math.floor(Math.random() * types.length)];
+    const event = {
+      target: {
+        id: type,
+      },
+    };
+    if (person !== realPerson) {
+      setTimeout(() => this.handleAdopt(event), 5000);
+    }
   }
 
   handleAddRealPerson = (event, name) => {
     event.preventDefault();
     const { people } = this.state;
+    document.getElementById('name').value = '';
     if (people.includes(name)) {
-      document.getElementById('name').value = '';
       return this.setState({ error: 'Name must be unique'});
     }
     helper.addPerson(name)
@@ -74,6 +100,7 @@ class App extends React.Component {
       handleAdopt: this.handleAdopt,
     }
     const { people } = this.state;
+    // this.handleAutoAdopt();
 
     return (
       <>

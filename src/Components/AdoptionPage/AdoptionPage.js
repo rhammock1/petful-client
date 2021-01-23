@@ -4,6 +4,7 @@ import PetContext from '../../PetContext';
 // Form for user to add their name to the adoption list
 function SignUp(props) {
   const { people } = props || [];
+  console.log(people);
   return (
     <div className='signup'>
       <form onSubmit={(event) => props.handleAddRealPerson(event, props.name)} >
@@ -91,7 +92,15 @@ class AdoptionPage extends React.Component {
               </div>
             )
           })}
-          <button id='both' onClick={(event) => handleAdopt(event)} type='button'>Or, Adopt us both</button>
+          {(person === realPerson)
+                  ? (
+                  <>
+                    <button id='both' onClick={(event) => handleAdopt(event)} type='button'>Or, Adopt us both</button>
+                  </>
+                  )
+                  : null
+                }
+          
         </div>
       </div>
       )
