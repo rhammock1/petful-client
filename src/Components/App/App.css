@@ -1,0 +1,33 @@
+header {
+  text-align: center;
+}
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.page-container {
+  position:relative;
+  width:100%;
+  height:100%;
+  display: flex;
+  flex-direction: column;
+}
+.page-heading {
+  text-align: center;
+}
+.landing-description {
+  display: flex;
+  flex-direction: column;
+
+}
+button {
+  width: max-content;
+  border-radius: 10%;
+  align-self: center;
+}
+img {
+  width: 100%;
+}

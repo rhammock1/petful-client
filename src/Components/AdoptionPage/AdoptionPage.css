@@ -1,0 +1,67 @@
+.signup {
+  width: 80%;
+  margin: auto;
+}
+legend {
+  font-size: 20px;
+}
+.form-group {
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  max-width:100%;
+  padding: 10px 15px;
+}
+.canAdopt {
+  text-align: center;
+  font-size: 20px;
+  animation: growAndShrinkText 3s ease-out 0s 1;
+}
+@keyframes growAndShrinkText {
+  0% {
+    font-size: 18px;
+  }
+  50% {
+    font-size: 25px
+  }
+  100% {
+    font-size: 20px;
+  }
+}
+.adoption-container {
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+
+}
+.message {
+  position:absolute;
+  z-index:5;
+  top: -2.5%;
+  animation: slideLeftRight 5s ease-in 0s infinite;
+}
+@keyframes slideLeftRight {
+  0% {
+    right: 100%
+  }
+  100% {
+    right: -100%;
+  }
+}
+.thank-you {
+  width: 80%;
+  margin: auto;
+
+  text-align:center;
+}
+.pet-container {
+  width: 75%;
+  margin: auto;
+  padding-bottom: 15px;
+
+}

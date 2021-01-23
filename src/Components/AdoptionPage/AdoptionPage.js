@@ -1,5 +1,6 @@
 import React from 'react';
 import PetContext from '../../PetContext';
+import './AdoptionPage.css';
 
 // Form for user to add their name to the adoption list
 function SignUp(props) {
@@ -10,9 +11,9 @@ function SignUp(props) {
         <legend>Ready to Adopt?</legend>
         <div className='form-group'>
           <p>These people are already ahead of you: </p>
-          <ul>
+          <ol>
             {people.map((person, i) => <li key={i}>{(person === props.realPerson) ? `${person} <- You` : `${person}`}</li>)}
-          </ul>
+          </ol>
         </div>
         <div className='form-group'>
           <label htmlFor='name'>Name: </label>
@@ -52,6 +53,8 @@ class AdoptionPage extends React.Component {
     const { handleAddRealPerson, people } = this.props;
     const { name } = this.state;
     let type = '';
+    // const thank = document.querySelector('.message');
+    // thank.style.setProperty();
 
     return (
       <div className='page-container'>
@@ -60,7 +63,7 @@ class AdoptionPage extends React.Component {
         </div>
         
           {(message && !canAdopt) 
-            ? <div className='thank-you'>
+            ? <div className='thank-you message'>
                 <p>{message}</p>
               </div>
             : null

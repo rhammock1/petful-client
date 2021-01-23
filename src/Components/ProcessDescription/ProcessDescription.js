@@ -1,4 +1,5 @@
 import React from 'react';
+import './ProcessDescription.css';
 
 const AdoptDesc = function() {
   return (
