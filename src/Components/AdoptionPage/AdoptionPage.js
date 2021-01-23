@@ -97,7 +97,7 @@ class AdoptionPage extends React.Component {
                   <ul>
                     <li>{pet.name}, Age {pet.age}</li>
                     <li>{pet.sex} - {pet.breed}</li>
-                    <li>{pet.story}</li>
+                    <li>Story: {pet.story}</li>
                   </ul>
                 </div>
                 {(person === realPerson)
