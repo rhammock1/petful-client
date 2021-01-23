@@ -51,6 +51,7 @@ class App extends React.Component {
     }
     helper.petIsAdopted(type)
       .then((resJson) => {
+        // eslint-disable-next-line no-unused-vars
         const [removed, ...people] = this.state.people;
         const canAdopt = people[0] === realPerson;
 
