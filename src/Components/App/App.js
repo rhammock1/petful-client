@@ -42,7 +42,6 @@ class App extends React.Component {
     if (!type) {
       return;
     }
-
     const { person, realPerson } = this.state;
 
     if (person === realPerson) {
@@ -73,13 +72,6 @@ class App extends React.Component {
   }
 
   handleAutoAdopt = () => {
-    const types = ['dogs', 'cats', 'both'];
-    const type = types[Math.floor(Math.random() * types.length)];
-    const event = {
-      target: {
-        id: type,
-      },
-    };
 
     const names = [
       'Jerry Terry',
@@ -90,6 +82,13 @@ class App extends React.Component {
     let counter = 0;
     
     const timer = setInterval(() => {
+      const types = ['dogs', 'cats', 'both'];
+      const type = types[Math.floor(Math.random() * types.length)];
+      const event = {
+        target: {
+          id: type,
+        },
+      };
       this.handleAdopt(event);
       helper.addPerson(names[counter])
         .then((personJson) => {
@@ -98,7 +97,6 @@ class App extends React.Component {
           } else {
             counter++;
           }
-          console.log(counter);
           const { people } = this.state;
           const newPeople = [...people];
           const person = personJson.person;
@@ -109,10 +107,9 @@ class App extends React.Component {
           this.setState({ error });
         })
     }, 5000)
-    const { canAdopt } = this.state;
     const stop = setInterval(() => {
+      const { canAdopt } = this.state;
       if (canAdopt) {
-        console.log('Hey boss');
         clearInterval(timer);
         clearInterval(stop);
       }
@@ -123,6 +120,9 @@ class App extends React.Component {
     event.preventDefault();
     const { people } = this.state;
     document.getElementById('name').value = '';
+    if (!name) {
+      return this.setState({ error: 'Name must not be blank'});
+    }
     if (people.includes(name)) {
       return this.setState({ error: 'Name must be unique'});
     }
@@ -132,7 +132,6 @@ class App extends React.Component {
         const newPeople = [...people];
         const person = personJson.person;
         newPeople.push(person);
-        console.log(newPeople);
         this.setState({ realPerson: name, people: newPeople })
         if(people.length < 1) {
           this.setState({ person: name });

@@ -1,5 +1,5 @@
-// const endpoint = 'https://mysterious-lowlands-03819.herokuapp.com/api';
-const endpoint = 'http://localhost:8080/api';
+const endpoint = 'https://mysterious-lowlands-03819.herokuapp.com/api';
+// const endpoint = 'http://localhost:8080/api';
 
 const fetchBoth = function() {
   return Promise.all([
