@@ -4,7 +4,6 @@ import PetContext from '../../PetContext';
 // Form for user to add their name to the adoption list
 function SignUp(props) {
   const { people } = props || [];
-  console.log(people);
   return (
     <div className='signup'>
       <form onSubmit={(event) => props.handleAddRealPerson(event, props.name)} >
@@ -43,7 +42,8 @@ class AdoptionPage extends React.Component {
     const {
       topPets,
       person,
-      thankYou,
+      adopted,
+      message,
       realPerson,
       error,
       handleAdopt,
@@ -57,9 +57,21 @@ class AdoptionPage extends React.Component {
         <div className='page-heading'>
           <h2>Here are the pets available for adoption</h2>
         </div>
+        
+          {(message) 
+            ? <div className='thank-you'>
+                <p>{message}</p>
+              </div>
+            : null
+          }
         <SignUp error={error} realPerson={realPerson} name={name} handleChange={this.handleChange} handleAddRealPerson={handleAddRealPerson} people={people} />
+        {(message && adopted) 
+            ? <div className='thank-you confirmation'>
+                <h3>Congrats on adopting your new pet!</h3>
+              </div>
+            : null
+          }
         <div className='adoption-container'>
-          {/* Add context then make another container for each animal.  */}
           {Object.entries(topPets).map((pet, i) => {
             
             if (topPets.cat === pet[1]) {
@@ -68,7 +80,7 @@ class AdoptionPage extends React.Component {
               type = 'dogs'
             }
 
-            pet = pet[1];
+            pet = pet[1] || {};
             
             return (
               <div key={i} className='pet-container'>
@@ -93,14 +105,13 @@ class AdoptionPage extends React.Component {
             )
           })}
           {(person === realPerson)
-                  ? (
-                  <>
-                    <button id='both' onClick={(event) => handleAdopt(event)} type='button'>Or, Adopt us both</button>
-                  </>
-                  )
-                  : null
-                }
-          
+            ? (
+            <>
+              <button id='both' onClick={(event) => handleAdopt(event)} type='button'>Or, Adopt us both</button>
+            </>
+            )
+            : null
+          }
         </div>
       </div>
       )

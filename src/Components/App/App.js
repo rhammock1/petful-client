@@ -18,7 +18,7 @@ class App extends React.Component {
     person: '',
     people: [],
     message: '',
-    thankYouMeme: 'https://i.redd.it/ne17uc446c051.jpg',
+    adopted: false,
   }
 
   componentDidMount() {
@@ -36,20 +36,27 @@ class App extends React.Component {
       })
   }
 
-  handleAdopt = (event) => {
+  handleAdopt = async (event) => {
     const type = event.target.id;
-    const { people } = this.state;
+    const { people, person, realPerson } = this.state;
+    if (people.length < 1) {
+      return;
+    }
+    if (person === realPerson) {
+      this.setState({ adopted: true });
+    } else {
+      this.setState({ adopted: false });
+    }
     people.shift();
-    console.log(people);
-    helper.petIsAdopted(type)
+    const newPerson = [...people].shift();
+    await helper.petIsAdopted(type)
       .then((resJson) => {
         this.setState({
           topPets: resJson.topPets,
           message: resJson.message,
-          realPerson: '',
           people: people,
+          person: newPerson || '',
         })
-
       })
       .catch((error) => {
         this.setState({ error });
@@ -57,7 +64,6 @@ class App extends React.Component {
   }
 
   handleAutoAdopt = () => {
-    const { person, realPerson } = this.state;
     const types = ['dogs', 'cats', 'both'];
     const type = types[Math.floor(Math.random() * types.length)];
     const event = {
@@ -65,9 +71,44 @@ class App extends React.Component {
         id: type,
       },
     };
-    if (person !== realPerson) {
-      setTimeout(() => this.handleAdopt(event), 5000);
-    }
+    const { person, realPerson } = this.state;
+
+    const stop = setInterval(() => {
+      if (person === realPerson) {
+        console.log('Hey boss');
+        clearInterval(timer);
+        clearInterval(stop);
+      }
+    })
+    const names = [
+      'Jerry Terry',
+      'Merry Werry',
+      'Larry Lobster',
+      'Bobby Wobby',
+      'Joe Shmoe'];
+    let counter = 0;
+    
+    const timer = setInterval(() => {
+      this.handleAdopt(event);
+      helper.addPerson(names[counter])
+        .then((personJson) => {
+          if (counter >= names.length - 1) {
+            counter = 0;
+          } else {
+            counter++;
+          }
+          console.log(counter);
+          const { people } = this.state;
+          const newPeople = [...people];
+          const person = personJson.person;
+          newPeople.push(person);
+          this.setState({ people: newPeople });
+        })
+        .catch((error) => {
+          this.setState({ error });
+        })
+    }, 5000)
+    
   }
 
   handleAddRealPerson = (event, name) => {
@@ -82,25 +123,31 @@ class App extends React.Component {
         const { people } = this.state;
         const newPeople = [...people];
         const person = personJson.person;
-        newPeople.push(person); 
+        newPeople.push(person);
+        console.log(newPeople);
         this.setState({ realPerson: name, people: newPeople })
+        if(people.length < 1) {
+          this.setState({ person: name });
+        }
       })
       .catch((error) => {
         this.setState({ error })
       })
+    this.handleAutoAdopt();
   }
 
   render() {
     const value = {
       topPets: this.state.topPets,
       person: this.state.person,
-      thankYou: this.state.thankYouMeme,
+      adopted: this.state.adopted,
       realPerson: this.state.realPerson,
       error: this.state.error,
       handleAdopt: this.handleAdopt,
+      message: this.state.message,
     }
     const { people } = this.state;
-    // this.handleAutoAdopt();
+
 
     return (
       <>

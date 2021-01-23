@@ -3,10 +3,11 @@ import React from 'react';
 const PetContext = React.createContext({
   topPets: {},
   person: '',
-  thankYouMeme: '',
+  adopted: false,
   realPerson: '',
   handleAdopt: () => {},
   error: null,
+  message: '',
 })
 
 export default PetContext;
