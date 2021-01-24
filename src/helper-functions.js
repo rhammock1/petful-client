@@ -1,5 +1,4 @@
-const endpoint = 'https://mysterious-lowlands-03819.herokuapp.com/api';
-// const endpoint = 'http://localhost:8080/api';
+const endpoint = process.env.REACT_APP_API_URL;
 
 const fetchBoth = function() {
   return Promise.all([
