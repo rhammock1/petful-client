@@ -5,7 +5,7 @@ const AdoptDesc = function() {
   return (
     <div className='description'>
       <p>
-        At Petful, were all a family. Each animal is just like a member of our family. Many of these animals have had troubled pasts, but are still only seeking love. Our adoption process is very simple. We are only allowed for one dog and/or cat being adopted at a time. The animals are available for adoption on a First-In-First-Out basis. 
+        At Petful, we're all a family. Each animal is just like a member of our family. Many of these animals have had troubled pasts, but are still only seeking love. Our adoption process is very simple. We are only allowed for one dog and/or cat being adopted at a time. The animals are available for adoption on a First-In-First-Out basis. 
       </p>
       <p>
         In order to adopt you must be on the list. On the next page you will be able to see the animals currently available for adoption. If you're still interested in adopting you can sign up to join the list.
