@@ -1,5 +1,5 @@
 const endpoint = process.env.REACT_APP_API_URL;
-
+// const endpoint = 'http://localhost:8080/api';
 const fetchBoth = function() {
   return Promise.all([
       fetch(`${endpoint}/pets`),

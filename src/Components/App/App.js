@@ -33,6 +33,7 @@ class App extends React.Component {
         })
       })
       .catch((error) => {
+        console.error('line 36', error);
         this.setState({ error });
       })
   }
