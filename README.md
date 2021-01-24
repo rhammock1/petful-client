@@ -1,7 +1,7 @@
 # Petful Client
 
 ## Hosted at:
-https://petful-client-mci52nuxo.vercel.app/
+https://petful-client-eosin.vercel.app/
 
 This app is a simple DSA practice for the Thinkful program. 
 
