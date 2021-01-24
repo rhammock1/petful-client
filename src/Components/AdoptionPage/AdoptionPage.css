@@ -4,12 +4,23 @@
 }
 legend {
   font-size: 20px;
+  text-align: center;
+
 }
 .form-group {
   width:100%;
+  margin:auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+.form-group>p {
+  text-align: center;
+}
+ol {
+  padding: 0;
+  width: fit-content;
+  margin:auto;
 }
 form {
   display: flex;
@@ -19,7 +30,7 @@ form {
 }
 .canAdopt {
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   animation: growAndShrinkText 3s ease-out 0s 1;
 }
 @keyframes growAndShrinkText {
@@ -27,10 +38,10 @@ form {
     font-size: 18px;
   }
   50% {
-    font-size: 25px
+    font-size: 23px
   }
   100% {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 .adoption-container {
@@ -38,6 +49,7 @@ form {
   display:flex;
   flex-direction: column;
   padding-bottom: 15px;
+  overflow-x: hidden;
 }
 .message {
   position:relative;
@@ -59,9 +71,14 @@ form {
 
   text-align:center;
 }
+span {
+  font-size: 14px;
+}
 .pet-container {
   width: 75%;
   margin: auto;
-  padding-bottom: 15px;
-
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #EABA6B;
+  box-shadow: 2px 3px 2px #121212;
 }
