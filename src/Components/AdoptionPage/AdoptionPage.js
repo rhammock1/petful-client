@@ -79,11 +79,9 @@ class AdoptionPage extends React.Component {
                 <img src={pet.imageURL} alt={pet.imageDescription} />
                 <span>{pet.imageDescription}</span>
                 <div className='details'>
-                  <ul>
-                    <li>{pet.name}, Age {pet.age}</li>
-                    <li>{pet.sex} - {pet.breed}</li>
-                    <li>Story: {pet.story}</li>
-                  </ul>
+                    <h3>{pet.name}, <span>Age {pet.age}</span></h3>
+                    <p>{pet.sex} - {pet.breed}</p>
+                    <p>They came to this shelter beacuse: {pet.story}</p>
                 </div>
                 {(person === realPerson)
                   ? (

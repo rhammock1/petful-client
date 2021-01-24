@@ -55,7 +55,7 @@ form {
   position:relative;
   z-index:5;
   top: -2.5%;
-  animation: slideLeftRight 5s ease-in 0s infinite;
+  animation: slideLeftRight 5s cubic-bezier(.14,1.07,.91,-0.08) 0s infinite;
 }
 @keyframes slideLeftRight {
   0% {
@@ -77,8 +77,15 @@ span {
 .pet-container {
   width: 75%;
   margin: auto;
+  
   margin-bottom: 15px;
   padding: 15px;
   background-color: #EABA6B;
   box-shadow: 2px 3px 2px #121212;
+}
+.details {
+  display: flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: center;
 }

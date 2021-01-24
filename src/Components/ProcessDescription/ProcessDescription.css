@@ -3,9 +3,10 @@
   margin: auto;
   margin-bottom: 15px;
   text-indent: 20px;
-  background-color: #0081AF;
-  color:#efefef;
+  background-color: #EABA6B;
+  color:#121212;
   /* border-radius: 10px; */
   box-shadow: 3px 3px 5px #121212;
   padding: 5px 10px;
+  font-size: 20px;
 }
