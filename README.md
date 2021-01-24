@@ -14,9 +14,9 @@ In order to adopt you must be on the list. On the next page you will be able to 
 
 When it's your turn, you may adopt a cat, a dog, or both. Adoption is free, we just hope that all of our family members have a good home with plenty of treats and toys.
 
-#### Created with React, Node, and Express
+### Created with React, Node, and Express
 
-#### Screen Shots
+### Screen Shots
 
 ![Landing Page](./images/landing-page-SS.png)
 
