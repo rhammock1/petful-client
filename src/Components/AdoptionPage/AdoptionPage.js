@@ -62,25 +62,7 @@ class AdoptionPage extends React.Component {
           <h2>Here are the pets available for adoption</h2>
         </div>
         
-          {(message && !canAdopt) 
-            ? <div className='thank-you message'>
-                <p>{message}</p>
-              </div>
-            : null
-          }
-        <SignUp error={error} realPerson={realPerson} name={name} handleChange={this.handleChange} handleAddRealPerson={handleAddRealPerson} people={people} />
-        {(message && adopted) 
-            ? <div className='thank-you confirmation'>
-                <h3>Congrats on adopting your new pet!</h3>
-              </div>
-            : null
-          }
-        {(message && canAdopt) 
-          ? <div className='thank-you canAdopt'>
-              <h3>{message}</h3>
-            </div>
-          : null
-        }
+          
         <div className='adoption-container'>
           {Object.entries(topPets).map((pet, i) => {
             
@@ -122,6 +104,25 @@ class AdoptionPage extends React.Component {
             )
             : null
           }
+          {(message && !canAdopt) 
+            ? <div className='thank-you message'>
+                <p>{message}</p>
+              </div>
+            : null
+          }
+        {(message && adopted) 
+            ? <div className='thank-you confirmation'>
+                <h3>Congrats on adopting your new pet!</h3>
+              </div>
+            : null
+          }
+        {(message && canAdopt) 
+          ? <div className='thank-you canAdopt'>
+              <h3>{message}</h3>
+            </div>
+          : null
+        }
+          <SignUp error={error} realPerson={realPerson} name={name} handleChange={this.handleChange} handleAddRealPerson={handleAddRealPerson} people={people} />
         </div>
       </div>
       )

@@ -1,6 +1,11 @@
 .description {
   width: 80%;
   margin: auto;
+  margin-bottom: 15px;
   text-indent: 20px;
-  
+  background-color: #0081AF;
+  color:#efefef;
+  /* border-radius: 10px; */
+  box-shadow: 3px 3px 5px #121212;
+  padding: 5px 10px;
 }
