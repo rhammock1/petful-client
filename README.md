@@ -1,7 +1,8 @@
 # Petful Client
 
-## Hosted at:
-https://petful-client-eosin.vercel.app/
+Hosted [Here](https://petful-client-eosin.vercel.app/)
+Server Repo [Here](https://github.com/rhammock1/petful-server/)
+
 
 This app is a simple DSA practice for the Thinkful program. 
 
